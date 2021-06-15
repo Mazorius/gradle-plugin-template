@@ -16,7 +16,7 @@ gradlePlugin.plugins.create("example") {
 }
 
 dependencies {
-  implementation(enforcedPlatform("org.jetbrains.kotlin:kotlin-bom:1.4.31"))
+  implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.4.31"))
 
   val koTestVersion = "4.6.0"
   testImplementation("io.kotest:kotest-assertions-core:$koTestVersion")
@@ -25,20 +25,21 @@ dependencies {
 }
 
 // TODO EVERYTHING BELOW CAN BE EXTRACTED
-java {
-  toolchain {
-    languageVersion.set(JavaLanguageVersion.of("11"))
-  }
+java.toolchain {
+  languageVersion.set(JavaLanguageVersion.of("11"))
+  vendor.set(org.gradle.jvm.toolchain.JvmVendorSpec.ADOPTOPENJDK)
 }
 
 val sourceSetName = "integrationTest"
-sourceSets {
-  // TODO is not recognized as test source set in IntelliJ
-  register(sourceSetName) {
-    compileClasspath += sourceSets.main.get().output
-    runtimeClasspath += sourceSets.main.get().output
-    allSource.srcDir(layout.projectDirectory.dir("src/$sourceSetName"))
+lateinit var kotlinSourceDir: Directory
+sourceSets.register(sourceSetName) {
+  compileClasspath += sourceSets.main.get().output
+  runtimeClasspath += sourceSets.main.get().output
+  val sourceSetDir = layout.projectDirectory.dir("src").dir(sourceSetName)
+  withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class) {
+    kotlin.srcDir(sourceSetDir.dir("kotlin"))
   }
+  resources.srcDir(sourceSetDir.dir("resources"))
 }
 
 val integrationTest by tasks.registering(Test::class) {
