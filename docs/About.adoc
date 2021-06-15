@@ -1,0 +1,14 @@
+:hide-uri-scheme:
+:toc: preamble
+
+= All about the adjustments made by the plugin.
+
+This plugin ...
+
+== DOES THIS
+
+// TODO
+
+== DOES THIS
+
+// TODO

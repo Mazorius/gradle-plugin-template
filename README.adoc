@@ -1,0 +1,51 @@
+:hide-uri-scheme:
+:toc: preamble
+
+:git-ssh-url: git@github.com:Mazorius/gradle-plugin-template.git
+
+= Template Project for Gradle Plugins
+
+To create a Gradle plugin from this template, please perform the following steps.
+
+. First go to an empty directory where you want to work on this Gradle plugin.
+
+____
+The following problem may occur due to the set HEAD.
+However, this is not a problem and can be ignored.
+
+....
+fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.
+....
+____
+
+.Bash
+[%collapsible]
+====
+[source,bash,subs="attributes"]
+----
+git archive \
+  --format tgz \
+  --remote={git-ssh-url} master \
+  | tar -x && \
+mv README.adoc.template README.adoc && \
+git init && \
+git add --all && \
+git commit --message 'Initial Commit!'
+----
+====
+
+.Fish shell
+[%collapsible]
+====
+[source,shell script,subs="attributes"]
+----
+git archive \
+  --format tgz \
+  --remote={git-ssh-url} master \
+  | tar -x; and \
+mv README.adoc.template README.adoc; and \
+git init; and \
+git add --all; and \
+git commit --message 'Initial Commit!'
+----
+====

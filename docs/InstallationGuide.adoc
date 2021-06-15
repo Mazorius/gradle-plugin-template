@@ -1,0 +1,90 @@
+:hide-uri-scheme:
+:toc: preamble
+
+= Installation Guide
+
+This document contains all necessary steps for the initial installation.
+
+== Apply the Plugin
+
+:plugin-id: com.example.ROOTPROJECT-NAME
+:version: 1.0.0
+
+.build.gradle
+[source,groovy,subs=attributes]
+----
+plugins {
+  id '{plugin-id}' version '{version}'
+}
+----
+
+.build.gradle.kts
+[source,kotlin,subs=attributes]
+----
+plugins {
+  id("{plugin-id}") version "{version}"
+}
+----
+
+== Configure the Plugin
+
+=== Extension
+
+:extension-name: exampleExtensionName
+
+.build.gradle
+[source,groovy,subs=attributes]
+----
+{extension-name} {
+}
+----
+
+.build.gradle.kts
+[source,kotlin,subs=attributes]
+----
+{extension-name} {
+}
+----
+
+[cols="1,2a,1,1,3"]
+|===
+|key|values allowed|required|default|description
+|===
+
+=== Properties
+
+The following properties can be set via `settings.gradle`, `settings.gradle.kts`, `~/.gradle/gradle.properties` or as command line option.
+The recommend variant is mentioned for each property.
+
+.~/.gradle/gradle.properties
+[%collapsible]
+====
+[source,properties]
+----
+----
+====
+
+.settings.gradle
+[%collapsible]
+====
+[source,kotlin]
+----
+gradle.allprojects {
+}
+----
+====
+
+.settings.gradle.kts
+[%collapsible]
+====
+[source,kotlin]
+----
+gradle.allprojects {
+}
+----
+====
+
+[cols="1,4a,1,1a,5"]
+|===
+|key|values allowed|required|default|description
+|===

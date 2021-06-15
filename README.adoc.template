@@ -1,0 +1,44 @@
+:hide-uri-scheme:
+:toc: preamble
+
+:gradle-userguie: https://docs.gradle.org/current/userguide
+:gradle-idea_plugin: {gradle-userguie}/idea_plugin.html
+:gradle-eclipse_plugin: {gradle-userguie}/eclipse_plugin.html
+
+= NAME OF THE PROJECT
+
+A Gradle plugin which will ... .
+
+== Installation
+
+=== IntelliJ-IDEA
+
+To import the project into IntelliJ run the following command in the project root.
+
+[source,bash]
+----
+./gradlew openIdea
+----
+
+This will generate any IntelliJ sources, such as the `\*.ipr`, `*.iws` or `*.iml` , necessary to import the project into your IntelliJ IDEA.
+To get further information go to {gradle-idea_plugin}[Gradle IDEA plugin documentation].
+
+=== Eclipse
+
+To import the project into Eclipse run the following command in the project root.
+
+[source,bash]
+----
+./gradlew eclipse
+----
+
+This will generate any Eclipse sources necessary to import the project into your Eclipse IDE.
+To get further information go to {gradle-eclipse_plugin}[Gradle Eclipse plugin documentation].
+
+== Usage
+
+=== Integrate into Gradle
+
+Information about what the plugin does can be found in link:docs/About.adoc[].
+
+Installation instructions can be found in link:docs/InstallationGuide.adoc[].
