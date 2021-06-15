@@ -6,6 +6,7 @@ import org.gradle.kotlin.dsl.listProperty
 import org.gradle.kotlin.dsl.mapProperty
 import org.gradle.kotlin.dsl.property
 import org.gradle.kotlin.dsl.setProperty
+import javax.inject.Inject
 
 /**
  * Plugin extension to configure sub.
@@ -40,7 +41,7 @@ open class TemplateSubExtension(objects: ObjectFactory, project: Project) {
    * Map property example
    */
   val mapProperty =
-      objects.mapProperty<String, String>().convention(mutableMapOf())
+    objects.mapProperty<String, String>().convention(mutableMapOf())
 
   /**
    * Directory property example
@@ -59,9 +60,7 @@ open class TemplateSubExtension(objects: ObjectFactory, project: Project) {
   /**
    * File collection example
    */
-  val fileCollection = objects.fileCollection().setFrom(
-    project.layout.projectDirectory.files("files")
-  )
+  val fileCollection = objects.fileCollection()
 
   /**
    * File tree example

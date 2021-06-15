@@ -29,66 +29,22 @@ class TemplatePlugin : Plugin<Project> {
      - project.logger.trace() — will never be printed in Gradle!
      */
 
-    // The following functions show how a plugin can be applied to projects.
-    project.applyOnProject()
-    //project.applyOnlyOnRootProject()
-    //project.applyOnAllProjectsViaRootProject()
-    //project.applyOnlyOnSubProjectsViaRootProject()
-  }
+    project.logger.debug("Apply Template plugin on '${project.path}'")
+    project.registerTask(project.registerExtension())
 
-  private fun Project.applyOnProject() {
-    logger.debug("Apply Template plugin on '$path'")
-    registerTask(registerExtension())
-    logger.quiet("Here should be your code and this log should be deleted")
-  }
-
-  private fun Project.applyOnlyOnRootProject() {
-    ifRootProject {
-      applyOnProject()
-    }
-  }
-
-  private fun Project.applyOnAllProjectsViaRootProject() {
-    ifRootProject {
-      allprojects {
-        applyOnProject()
-      }
-    }
-  }
-
-  private fun Project.applyOnlyOnSubProjectsViaRootProject() {
-    ifRootProject {
-      subprojects {
-        applyOnProject()
-      }
-    }
-  }
-
-  private fun Project.ifRootProject(action: () -> Unit) {
-    if (this.equals(rootProject)) {
-      action()
-    } else {
-      throw UnsupportedOperationException(
-        "The Template plugin should only be applied on the root project."
-      )
-    }
+    project.logger.quiet("Here should be your code and this log should be deleted")
   }
 
   private fun Project.registerExtension(): TemplateExtension {
     logger.debug("Create Template extension on '$path'")
-    return extensions.create(
-      TemplateExtension.NAME,
-      TemplateExtension::class,
-      project
-    )
+    return extensions.create(TemplateExtension.NAME, TemplateExtension::class)
   }
 
   private fun Project.registerTask(extension: TemplateExtension) {
     logger.debug("Create Template task on '$path'")
-    tasks.register(
-      TemplateTask.NAME,
-      TemplateTask::class,
-      extension
-    )
+    tasks.register(TemplateTask.NAME, TemplateTask::class) {
+      sourceFiles.from(extension.sub.fileCollection)
+      outputDirectory.set(extension.sub.directory)
+    }
   }
 }

@@ -1,7 +1,10 @@
 package com.example.gradle.plugin.template.task
 
-import com.example.gradle.plugin.template.extension.TemplateExtension
 import org.gradle.api.DefaultTask
+import org.gradle.api.file.ConfigurableFileCollection
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.file.FileCollection
+import org.gradle.api.file.FileTree
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
@@ -9,18 +12,18 @@ import org.gradle.api.tasks.TaskAction
 /**
  * A task of the template plugin.
  */
-open class TemplateTask(extension: TemplateExtension) : DefaultTask() {
+abstract class TemplateTask : DefaultTask() {
 
   init {
     group = GROUP
     description = DESCRIPTION
   }
 
-  @InputFiles
-  val sourceFiles = extension.sub.fileCollection
+  @get:InputFiles
+  abstract val sourceFiles: ConfigurableFileCollection
 
-  @OutputDirectory
-  val outputDirectory = extension.sub.directory
+  @get:OutputDirectory
+  abstract val outputDirectory: DirectoryProperty
 
   @TaskAction
   fun execute() {

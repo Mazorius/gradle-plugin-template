@@ -6,6 +6,7 @@ import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.tasks.Nested
 import org.gradle.kotlin.dsl.domainObjectContainer
+import javax.inject.Inject
 
 /**
  * A extension for configuration of the behavior of the template plugin.
