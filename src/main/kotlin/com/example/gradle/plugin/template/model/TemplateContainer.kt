@@ -1,11 +1,11 @@
 package com.example.gradle.plugin.template.model
 
-import org.gradle.api.Project
-import org.gradle.api.model.ObjectFactory
-import org.gradle.kotlin.dsl.property
+import org.gradle.api.provider.Property
 
 /**
- * A named domain container object, that can be used to create N configurations.
+ * A named domain container interface, that can be used to create N configurations.
  */
-open class TemplateContainer(val name: String) {
+interface TemplateContainer {
+
+  val name : Property<String>
 }
