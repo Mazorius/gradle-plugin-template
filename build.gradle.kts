@@ -1,3 +1,5 @@
+import com.sun.imageio.plugins.jpeg.JPEG.vendor
+
 plugins {
   `java-gradle-plugin`
   `kotlin-dsl`
@@ -16,7 +18,7 @@ gradlePlugin.plugins.create("example") {
 }
 
 dependencies {
-  implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.4.31"))
+//  testImplementation(enforcedPlatform("org.jetbrains.kotlin:kotlin-bom:1.4.31"))
 
   val koTestVersion = "4.6.0"
   testImplementation("io.kotest:kotest-assertions-core:$koTestVersion")
